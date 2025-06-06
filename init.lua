@@ -424,6 +424,15 @@ require('lazy').setup({
           },
         },
       }
+      require('guess-indent').setup {
+        auto_cmd = true,
+        override_editorconfig = false,
+        filetype_exclude = {},
+        buftype_exclude = {},
+
+        default_tabstop = 4,
+        default_shiftwidth = 4,
+      }
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
@@ -899,7 +908,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'slate'
     end,
   },
 
