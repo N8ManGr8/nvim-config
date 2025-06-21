@@ -836,25 +836,22 @@ require('lazy').setup({
     },
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+  {
+    -- Colorscheme
+    'tanvirtin/monokai.nvim',
+    priority = 1000,
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
+      local monokai = require 'monokai'
+
+      local palette = vim.tbl_extend('force', monokai.pro, {
+        base2 = '#1d1d1d',
+      })
+
+      monokai.setup {
+        palette = palette,
       }
 
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'slate'
+      --vim.cmd 'colorscheme monokai'
     end,
   },
 
@@ -944,12 +941,15 @@ require('lazy').setup({
       -- Keymaps for bufferline cycling
       vim.keymap.set('n', '<Tab>', ':BufferLineCycleNext<CR>', { silent = true, desc = 'Next buffer' })
       vim.keymap.set('n', '<S-Tab>', ':BufferLineCycleNext<CR>', { silent = true, desc = 'Next buffer' })
+      vim.keymap.set('n', '<leader>dt', ':bdelete<CR>', { desc = 'Delete current tab' })
     end,
   },
   --TODO: Dashboard start screen
   --TODO: Re-bind leader key on start screen
   --TODO: Make Ctrl+Backspace/Delete work on Insert Mode + Unbind CTRL + W
   --TODO: Keybind for belowright split | terminal
+  --TODO: Keybind for auto-formatting
+  --TODO: Get neo-tree to work
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
