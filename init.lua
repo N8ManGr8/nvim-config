@@ -937,8 +937,13 @@ require('lazy').setup({
           mode = 'buffers',
           diagnostics = 'nvim_lsp',
           separator_style = 'slant',
+          show_buffer_close_icons = false,
         },
       }
+
+      -- Keymaps for bufferline cycling
+      vim.keymap.set('n', '<Tab>', ':BufferLineCycleNext<CR>', { silent = true, desc = 'Next buffer' })
+      vim.keymap.set('n', '<S-Tab>', ':BufferLineCycleNext<CR>', { silent = true, desc = 'Next buffer' })
     end,
   },
   --TODO: Dashboard start screen
